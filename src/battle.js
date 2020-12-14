@@ -55,13 +55,13 @@ async function createBattle(member, message) {
                 const filter = (reaction, user) =>
                     reaction.emoji.name === "❌" && user.id === playerTwo;
                 const no = msg.createReactionCollector(filter, {
-                    time: 15000,
+                    time: 20000,
                     max: 1
                 });
                 const filter2 = (reaction, user) =>
                     reaction.emoji.name === "✅" && user.id === playerTwo;
                 const yes = msg.createReactionCollector(filter2, {
-                    time: 15000,
+                    time: 20000,
                     max: 1
                 });
 
