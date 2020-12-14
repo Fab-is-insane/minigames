@@ -87,7 +87,7 @@ async function createBattle(member, message) {
                     ) {
                         return msg.edit("They didn't react in time :/");
                     }
-                }, 15000);
+                }, 20000);
             });
     }
 
