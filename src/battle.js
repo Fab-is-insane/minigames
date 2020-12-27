@@ -50,16 +50,16 @@ async function createBattle(member, message) {
                 `Hey ${member}! ${message.author} has challenged you to a battle, do you accept?`
             )
             .then(async msg => {
-                await msg.react("<a:Yes:792045938822086658>");
-                await msg.react("<a:No:792045927907983371>");
+                await msg.react("✅");
+                await msg.react("❌");
                 const filter = (reaction, user) =>
-                    reaction.emoji.name === "<a:No:792045927907983371>" && user.id === playerTwo;
+                    reaction.emoji.name === "❌" && user.id === playerTwo;
                 const no = msg.createReactionCollector(filter, {
                     time: 20000,
                     max: 1
                 });
                 const filter2 = (reaction, user) =>
-                    reaction.emoji.name === "<a:Yes:792045938822086658>" && user.id === playerTwo;
+                    reaction.emoji.name === "✅" && user.id === playerTwo;
                 const yes = msg.createReactionCollector(filter2, {
                     time: 20000,
                     max: 1
@@ -87,7 +87,7 @@ async function createBattle(member, message) {
                     ) {
                         return msg.edit("They didn't react in time :/");
                     }
-                }, 20000);
+                }, 200000);
             });
     }
 
