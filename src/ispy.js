@@ -280,7 +280,7 @@ class createISpy {
         players[1].id = 0;
         setTimeout(() => {
             return message.channel.send(
-                new Discord.MessageEmbed()
+                new MessageEmbed()
                     .setTitle("Congratgulations!")
                     .setDescription(
                         `${winner} has won the game!\nThe final object was a \`${playerData.pickedColor} ${playerData.pickedObject}\`!`
