@@ -1,4 +1,4 @@
-let Discord, {Message, MessageEmbed} = require("discord.js");
+let { Message, MessageEmbed } = require("discord.js");
 class createISpy {
     constructor(message) {
         this.message = message
@@ -135,7 +135,7 @@ class createISpy {
     }
     async sceneOne(message, member, players) {
         await message.channel.send(
-            new Discord.MessageEmbed()
+            new MessageEmbed()
                 .setTitle(`It's ${message.author.username}'s turn!`)
                 .setImage(this.scene.url)
                 .setDescription(
