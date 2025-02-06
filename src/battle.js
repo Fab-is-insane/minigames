@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 let attacks = [
     "stab",
     "attack",
@@ -94,17 +94,19 @@ async function createBattle(member, message) {
     async function accept(channel, playerOne, playerTwo, message, member) {
         playerOneData.battleActive = true;
         playerTwoData.battleActive = true;
-        channel.send(new MessageEmbed()
-            .setTitle("Settings")
-            .setDescription(
-                `Here are the settings you can change\nhealth: \`${settings.health}\`\nheal min: \`${settings.healMin}\` | heal max: \`${settings.healMax}\`\nattack min: \`${settings.attackMin}\` | attack max: \`${settings.attackMax}\`\n\nYou can change the values by typing in the name, then a number\nExample: \`heal max 50\`\nSend \`start\` to start!`
-            )
-            .setColor("GREEN")
-            .setFooter(
-                message.member.displayName,
-                message.author.displayAvatarURL()
-            )
-        ).then(async started => {
+        channel.send({
+            embeds: [new MessageEmbed()
+                .setTitle("Settings")
+                .setDescription(
+                    `Here are the settings you can change\nhealth: \`${settings.health}\`\nheal min: \`${settings.healMin}\` | heal max: \`${settings.healMax}\`\nattack min: \`${settings.attackMin}\` | attack max: \`${settings.attackMax}\`\n\nYou can change the values by typing in the name, then a number\nExample: \`heal max 50\`\nSend \`start\` to start!`
+                )
+                .setColor("GREEN")
+                .setFooter(
+                    message.member.displayName,
+                    message.author.displayAvatarURL()
+                )
+            ]
+        }).then(async started => {
             let filter1 = msg => msg.author.id === playerOne;
             let setSettings = channel.createMessageCollector(filter1, {
                 time: 120000
@@ -121,8 +123,8 @@ async function createBattle(member, message) {
                     if (args[1] === "min") {
                         settings.healMin = parseInt(args[2]);
                         setTimeout(() => {
-                            started.edit(
-                                new MessageEmbed()
+                            started.edit({
+                                embeds: [new MessageEmbed()
                                     .setTitle("Settings")
                                     .setDescription(
                                         `Here are the settings you can change\nhealth: \`${settings.health}\`\nheal min: \`${settings.healMin}\` | heal max: \`${settings.healMax}\`\nattack min: \`${settings.attackMin}\` | attack max: \`${settings.attackMax}\`\n\nYou can change the values by typing in the name, then a number\nExample: \`heal max 50\`\nSend \`start\` to start!`
@@ -132,13 +134,14 @@ async function createBattle(member, message) {
                                         message.member.displayName,
                                         message.author.displayAvatarURL()
                                     )
-                            );
+                                ]
+                            });
                         }, 1000);
                     } else if (args[1] === "max") {
                         settings.healMax = parseInt(args[2]);
                         setTimeout(() => {
-                            started.edit(
-                                new MessageEmbed()
+                            started.edit({
+                                embeds: [new MessageEmbed()
                                     .setTitle("Settings")
                                     .setDescription(
                                         `Here are the settings you can change\nhealth: \`${settings.health}\`\nheal min: \`${settings.healMin}\` | heal max: \`${settings.healMax}\`\nattack min: \`${settings.attackMin}\` | attack max: \`${settings.attackMax}\`\n\nYou can change the values by typing in the name, then a number\nExample: \`heal max 50\`\nSend \`start\` to start!`
@@ -148,7 +151,8 @@ async function createBattle(member, message) {
                                         message.member.displayName,
                                         message.author.displayAvatarURL()
                                     )
-                            );
+                                ]
+                            });
                         }, 1000);
                     }
                 } else if (
@@ -162,8 +166,8 @@ async function createBattle(member, message) {
                     if (args[1] === "min") {
                         settings.attackMin = parseInt(args[2]);
                         setTimeout(() => {
-                            started.edit(
-                                new MessageEmbed()
+                            started.edit({
+                                embeds: [new MessageEmbed()
                                     .setTitle("Settings")
                                     .setDescription(
                                         `Here are the settings you can change\nhealth: \`${settings.health}\`\nheal min: \`${settings.healMin}\` | heal max: \`${settings.healMax}\`\nattack min: \`${settings.attackMin}\` | attack max: \`${settings.attackMax}\`\n\nYou can change the values by typing in the name, then a number\nExample: \`heal max 50\`\nSend \`start\` to start!`
@@ -173,13 +177,14 @@ async function createBattle(member, message) {
                                         message.member.displayName,
                                         message.author.displayAvatarURL()
                                     )
-                            );
+                                ]
+                            });
                         }, 1000);
                     } else if (args[1] === "max") {
                         settings.attackMax = parseInt(args[2]);
                         setTimeout(() => {
-                            started.edit(
-                                new MessageEmbed()
+                            started.edit({
+                                embeds: [new MessageEmbed()
                                     .setTitle("Settings")
                                     .setDescription(
                                         `Here are the settings you can change\nhealth: \`${settings.health}\`\nheal min: \`${settings.healMin}\` | heal max: \`${settings.healMax}\`\nattack min: \`${settings.attackMin}\` | attack max: \`${settings.attackMax}\`\n\nYou can change the values by typing in the name, then a number\nExample: \`heal max 50\`\nSend \`start\` to start!`
@@ -189,7 +194,8 @@ async function createBattle(member, message) {
                                         message.member.displayName,
                                         message.author.displayAvatarURL()
                                     )
-                            );
+                                ]
+                            });
                         }, 1000);
                     }
                 } else if (
@@ -202,8 +208,8 @@ async function createBattle(member, message) {
                     playerOneData.battleHealth = parseInt(args[1]);
                     playerTwoData.battleHealth = parseInt(args[1]);
                     setTimeout(() => {
-                        started.edit(
-                            new MessageEmbed()
+                        started.edit({
+                            embeds: [new MessageEmbed()
                                 .setTitle("Settings")
                                 .setDescription(
                                     `Here are the settings you can change\nhealth: \`${settings.health}\`\nheal min: \`${settings.healMin}\` | heal max: \`${settings.healMax}\`\nattack min: \`${settings.attackMin}\` | attack max: \`${settings.attackMax}\`\n\nYou can change the values by typing in the name, then a number\nExample: \`heal max 50\`\nSend \`start\` to start!`
@@ -213,26 +219,26 @@ async function createBattle(member, message) {
                                     message.member.displayName,
                                     message.author.displayAvatarURL()
                                 )
-                        );
+                            ]
+                        });
                     }, 1000);
                 } else if (args[0] === "start") {
                     await setSettings.stop();
                     await first(channel, playerOne, playerTwo, message);
-                    return channel.send(
-                        new MessageEmbed()
+                    return channel.send({
+                        embeds: [new MessageEmbed()
                             .setTitle("Battle!")
                             .setDescription(
-                                `First Player: <@${playerOne}> \`HP: ${
-                                    playerOneData.battleHealth
-                                }\`\nSecond Player: <@${playerTwo}> \`HP: ${
-                                    playerTwoData.battleHealth
+                                `First Player: <@${playerOne}> \`HP: ${playerOneData.battleHealth
+                                }\`\nSecond Player: <@${playerTwo}> \`HP: ${playerTwoData.battleHealth
                                 }\`\n\nAttacks: \`${attacks.join(
                                     ", "
                                 )}\`\nHealing: \`${heals.join(", ")}\`\n\nUse \`--end\` on your turn to end`
                             )
                             .setColor("RED")
                             .setFooter(message.author.username, message.author.avatarURL())
-                    );
+                        ]
+                    });
                 }
             });
         });
@@ -281,8 +287,8 @@ async function createBattle(member, message) {
                         playerTwoData.battleHealth -= attackAmount;
                         playerOneData.battleTurn = false;
                         await collector.stop();
-                        await channel.send(
-                            new MessageEmbed()
+                        await channel.send({
+                            embeds: [new MessageEmbed()
                                 .setDescription(
                                     `${nowBattling} used **${attacks[i]}** to do \`${attackAmount}\` damage to ${nextUp}, they have \`${playerTwoData.battleHealth}\` HP Left!`
                                 )
@@ -295,13 +301,14 @@ async function createBattle(member, message) {
                                     `Next up: ${nextUp.displayName}`,
                                     nextUp.user.displayAvatarURL()
                                 )
-                        )
+                            ]
+                        })
                         return second(channel, playerOne, playerTwo, message);
                     } else if (chance[attackChance] === "no") {
                         playerOneData.battleTurn = false;
                         await collector.stop();
-                        await channel.send(
-                            new MessageEmbed()
+                        await channel.send({
+                            embeds: [new MessageEmbed()
                                 .setDescription(
                                     `${nowBattling} used **${attacks[i]}** against ${nextUp}, but it was unsuccessful, they still have \`${playerTwoData.battleHealth}\` HP Left!`
                                 )
@@ -314,7 +321,8 @@ async function createBattle(member, message) {
                                     `Next up: ${nextUp.displayName}`,
                                     nextUp.user.displayAvatarURL()
                                 )
-                        )
+                            ]
+                        })
                         await second(channel, playerOne, playerTwo, message);
                     }
                 }
@@ -334,8 +342,8 @@ async function createBattle(member, message) {
                         playerOneData.battleHealth += healAmount;
                         playerOneData.battleTurn = false;
                         await collector.stop()
-                        await channel.send(
-                            new MessageEmbed()
+                        await channel.send({
+                            embeds: [new MessageEmbed()
                                 .setDescription(
                                     `${nowBattling} used **${heals[x]}** and healed \`${healAmount}\` HP, they now have \`${playerOneData.battleHealth}\` HP!`
                                 )
@@ -348,13 +356,14 @@ async function createBattle(member, message) {
                                     `Next up: ${nextUp.displayName}`,
                                     nextUp.user.displayAvatarURL()
                                 )
-                        )
+                            ]
+                        })
                         return second(channel, playerOne, playerTwo, message);
                     } else if (chance[healChance] === "no") {
                         playerOneData.battleTurn = false
                         await collector.stop();
-                        await channel.send(
-                            new MessageEmbed()
+                        await channel.send({
+                            embeds: [new MessageEmbed()
                                 .setDescription(
                                     `${nowBattling} used **${heals[x]}** but it was unsuccessful, they still have \`${playerTwoData.battleHealth}\` HP!`
                                 )
@@ -367,7 +376,8 @@ async function createBattle(member, message) {
                                     `Next up: ${nextUp.displayName}`,
                                     nextUp.user.displayAvatarURL()
                                 )
-                        )
+                            ]
+                        })
                         return second(channel, playerOne, playerTwo, message);
                     }
                 }
@@ -419,8 +429,8 @@ async function createBattle(member, message) {
                         playerOneData.battleHealth -= attackAmount;
                         playerTwoData.battleTurn = false;
                         await collector.stop();
-                        await channel.send(
-                            new MessageEmbed()
+                        await channel.send({
+                            embeds: [new MessageEmbed()
                                 .setDescription(
                                     `${nowBattling} used **${attacks[i]}** to do \`${attackAmount}\` damage to ${nextUp}, they have \`${playerOneData.battleHealth}\` HP Left!`
                                 )
@@ -433,13 +443,14 @@ async function createBattle(member, message) {
                                     `Next up: ${nextUp.displayName}`,
                                     nextUp.user.displayAvatarURL()
                                 )
-                        )
+                            ]
+                        })
                         return first(channel, playerOne, playerTwo, message);
                     } else if (chance[attackChance] === "no") {
                         playerTwoData.battleTurn = false
                         await collector.stop();
-                        await channel.send(
-                            new MessageEmbed()
+                        await channel.send({
+                            embeds: [new MessageEmbed()
                                 .setDescription(
                                     `${nowBattling} used **${attacks[i]}** against ${nextUp}, but it was unsuccessful, they still have \`${playerTwoData.battleHealth}\` HP Left!`
                                 )
@@ -452,7 +463,8 @@ async function createBattle(member, message) {
                                     `Next up: ${nextUp.displayName}`,
                                     nextUp.user.displayAvatarURL()
                                 )
-                        )
+                            ]
+                        })
                         return first(channel, playerOne, playerTwo, message);
                     }
                 }
@@ -471,8 +483,8 @@ async function createBattle(member, message) {
                         playerTwoData.battleHealth += healAmount;
                         playerTwoData.battleTurn = false;
                         await collector.stop();
-                        await channel.send(
-                            new MessageEmbed()
+                        await channel.send({
+                            embeds: [new MessageEmbed()
                                 .setDescription(
                                     `${nowBattling} used **${heals[x]}** and healed \`${healAmount}\` HP, they now have \`${playerTwoData.battleHealth}\` HP!`
                                 )
@@ -485,13 +497,14 @@ async function createBattle(member, message) {
                                     `Next up: ${nextUp.displayName}`,
                                     nextUp.user.displayAvatarURL()
                                 )
-                        )
+                            ]
+                        })
                         return first(channel, playerOne, playerTwo, message);
                     } else if (chance[healChance] === "no") {
                         playerTwoData.battleTurn = false;
                         await collector.stop();
-                        await channel.send(
-                            new MessageEmbed()
+                        await channel.send({
+                            embeds: [new MessageEmbed()
                                 .setDescription(
                                     `${nowBattling} used **${heals[x]}** but it was unsuccessful, they still have \`${playerTwoData.battleHealth}\` HP!`
                                 )
@@ -504,7 +517,8 @@ async function createBattle(member, message) {
                                     `Next up: ${nextUp.displayName}`,
                                     nextUp.user.displayAvatarURL()
                                 )
-                        )
+                            ]
+                        })
                         return first(channel, playerOne, playerTwo, message)
                     }
                 }
@@ -518,15 +532,16 @@ async function createBattle(member, message) {
         if (winner === playerOne) wonData = playerOneData;
         if (winner === playerTwo) wonData = playerTwoData;
         setTimeout(() => {
-            return channel.send(
-                new MessageEmbed()
+            return channel.send({
+                embeds: [new MessageEmbed()
                     .setTitle("Congratgulations!")
                     .setDescription(
                         `${won} has won the battle with \`${wonData.battleHealth}\` HP Left!`
                     )
                     .setColor("GREEN")
                     .setFooter(won.displayName, won.user.displayAvatarURL())
-            );
+                ]
+            });
         }, 1500);
     }
 }
